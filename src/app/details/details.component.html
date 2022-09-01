@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+      <a routerLink="" class="disabled-link">Home</a>
+  </mat-toolbar>
+<div class="loading-indicator">
+    <mat-progress-spinner mode="indeterminate" color="blue" *ngIf="isLoading"></mat-progress-spinner>
+  </div>
+  <mat-table mat-table [dataSource]="dataSource" matSortActive="amount" matSortDirection="desc" class="styled-table" matSort>
+  
+      <!-- Block level Column -->
+      <ng-container matColumnDef="sender">
+        <mat-header-cell  *matHeaderCellDef> Sender </mat-header-cell>
+        <mat-cell  *matCellDef="let item"> {{item.sender.address}} </mat-cell>
+      </ng-container>
+    
+      <!-- Timestamp Column -->
+      <ng-container matColumnDef="target">
+        <mat-header-cell  *matHeaderCellDef> Target </mat-header-cell>
+        <mat-cell  *matCellDef="let item"> {{item.target.address}} </mat-cell>
+      </ng-container>
+    
+      <!-- Transaction number for the block Column -->
+      <ng-container matColumnDef="amount">
+        <mat-header-cell mat-sort-header *matHeaderCellDef > Amount </mat-header-cell>
+        <mat-cell  *matCellDef="let item">{{item.amount}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef > Status </mat-header-cell>
+        <mat-cell  *matCellDef="let item">{{item.status}}</mat-cell>
+      </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let item; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+  
